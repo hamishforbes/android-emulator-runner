@@ -15,10 +15,6 @@ const CMDLINE_TOOLS_URL_LINUX = 'https://dl.google.com/android/repository/comman
 export async function installAndroidSdk(apiLevel: number, target: string, arch: string, emulatorBuild?: string, ndkVersion?: string, cmakeVersion?: string): Promise<void> {
   const isOnMac = process.platform === 'darwin';
 
-  if (!isOnMac) {
-    await exec.exec(`sh -c \\"sudo chown $USER:$USER ${process.env.ANDROID_SDK_ROOT} -R`);
-  }
-
   const cmdlineToolsPath = `${process.env.ANDROID_SDK_ROOT}/cmdline-tools`;
   if (!fs.existsSync(cmdlineToolsPath)) {
     console.log('Installing new cmdline-tools.');
